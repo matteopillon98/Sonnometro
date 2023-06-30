@@ -51,6 +51,6 @@ for (const interfaceName in networkInterfaces) {
 }
 
 // Avvio del server
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
   console.log(`Server ${addresses[0]} avviato sulla porta ${port}`);
 });
