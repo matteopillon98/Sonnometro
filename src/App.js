@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import Slider from "@mui/material/Slider";
-import axios from "axios";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 
 if (process.env.NODE_ENV === "development") {
@@ -17,13 +16,22 @@ function App() {
   };
 
   const saveSonno = (value) => {
-    // Invia una richiesta POST all'endpoint API per salvare i dati
-    axios
-      .post("https://sonnometro-q35n.vercel.app/api/sonno", {
-        sonno: value,
-      })
+    fetch("https://sonnometro-q35n.vercel.app/api/sonno", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sonno: value }),
+    })
       .then((response) => {
-        console.log("Dati salvati con successo:", response.data);
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore durante la richiesta POST");
+        }
+      })
+      .then((data) => {
+        console.log("Dati salvati con successo:", data);
       })
       .catch((error) => {
         console.error(
