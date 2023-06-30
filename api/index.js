@@ -1,8 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
 const port = 3001;
+app.use(cors()); // Abilita le richieste CORS per tutte le rotte
 
 const TelegramBot = require("node-telegram-bot-api");
 
