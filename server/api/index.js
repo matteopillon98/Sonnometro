@@ -36,21 +36,5 @@ app.post("/api/sonno", (req, res) => {
   res.send("Dati del sonno ricevuti con successo!");
 });
 
-const os = require("os");
-
-// Ottieni l'indirizzo IP del server
-const networkInterfaces = os.networkInterfaces();
-const addresses = [];
-for (const interfaceName in networkInterfaces) {
-  const interfaces = networkInterfaces[interfaceName];
-  for (const iface of interfaces) {
-    if (iface.family === "IPv4" && !iface.internal) {
-      addresses.push(iface.address);
-    }
-  }
-}
-
 // Avvio del server
-app.listen(port, () => {
-  console.log(`Server ${addresses[0]} avviato sulla porta ${port}`);
-});
+app.listen(port, () => {});
