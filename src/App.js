@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import Slider from "@mui/material/Slider";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 
 if (process.env.NODE_ENV === "development") {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -12,7 +14,10 @@ function App() {
 
   const onSonnoChange = (event, value) => {
     setSonno(value);
-    saveSonno(value); // Chiamata alla funzione per salvare i dati
+  };
+
+  const onButtonClick = () => {
+    saveSonno(sonno); // Chiamata alla funzione per salvare i dati
   };
 
   const saveSonno = (value) => {
@@ -76,6 +81,14 @@ function App() {
       <h2 className="text-center">
         Hai impostato un livello di sonno pari a {sonno}
       </h2>
+
+      <Button
+        variant="contained"
+        endIcon={<SendIcon />}
+        onClick={onButtonClick}
+      >
+        Invia
+      </Button>
     </div>
   );
 }
