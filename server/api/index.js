@@ -9,8 +9,6 @@ const TelegramBot = require("node-telegram-bot-api");
 const botToken = "6237272691:AAG8QimxSfpDpNpYR8mDX1MLNDAF-nTirOc";
 const bot = new TelegramBot(botToken, { polling: false });
 
-app.use(cors()); // Abilita le richieste CORS per tutte le rotte
-
 // Middleware per il parsing del corpo della richiesta
 app.use(bodyParser.json());
 
