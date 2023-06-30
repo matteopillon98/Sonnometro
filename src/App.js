@@ -19,9 +19,12 @@ function App() {
   const saveSonno = (value) => {
     // Invia una richiesta POST all'endpoint API per salvare i dati
     axios
-      .post("https://sonnometro-server.vercel.app:3000/api/sonno", {
-        sonno: value,
-      })
+      .post(
+        "https://sonnometro-server-mzxh126oe-matteopillon98.vercel.app:3000/api/sonno",
+        {
+          sonno: value,
+        }
+      )
       .then((response) => {
         console.log("Dati salvati con successo:", response.data);
       })
