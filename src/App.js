@@ -21,6 +21,8 @@ function App() {
   const probabilityEnd = 1.0; // 100%
 
   const onSonnoChange = (event, value) => {
+    setShowAlert(false);
+    setShowSpleepAlert(false);
     setSonno(value);
   };
 
