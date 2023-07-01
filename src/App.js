@@ -50,15 +50,12 @@ function App() {
   };
 
   const saveSonno = (value, probability) => {
-    const requestBody = {
-      sonno: value,
-    };
     fetch("https://sonnometro-q35n.vercel.app/api/sonno", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(requestBody),
+      body: JSON.stringify({ sonno: value }),
     })
       .then((response) => {
         if (response.ok) {
