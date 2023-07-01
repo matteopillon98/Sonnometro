@@ -59,8 +59,8 @@ function App() {
   ];
 
   return (
-    <div className="flex justify-center items-center h-screen bg-black text-white">
-      <div className="flex flex-col gap-4 m-6 p-6 border-2 border-gray-400 rounded-lg justify-items-center">
+    <div className="flex justify-center items-center h-screen bg-blue-600 text-white">
+      <div className="flex flex-col gap-4 m-6 p-6 justify-items-center">
         <div className="flex items-center gap-2">
           <NightsStayIcon />
           <h1 className="text-center text-xl font-bold">
