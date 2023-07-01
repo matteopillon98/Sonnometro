@@ -16,12 +16,7 @@ app.post("/api/sonno", (req, res) => {
   const botToken = "6237272691:AAG8QimxSfpDpNpYR8mDX1MLNDAF-nTirOc";
   const bot = new TelegramBot(botToken, { polling: false });
   const sonno = parseInt(req.body.sonno);
-  const prob = parseFloat(req.body.prob);
-  const message =
-    "Livello di sonno impostato: " +
-    sonno +
-    "\n Probabilità di prendere sonno: " +
-    prob * 100;
+  const message = "Livello di sonno impostato: " + sonno;
   console.log("Dati del sonno ricevuti:", sonno);
   bot
     .sendMessage(chatId, message)
