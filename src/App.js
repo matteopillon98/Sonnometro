@@ -13,23 +13,47 @@ if (process.env.NODE_ENV === "development") {
 function App() {
   const [sonno, setSonno] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
+  const [showSleepAlert, setShowSpleepAlert] = useState(false);
+
+  const rangeStart = 50;
+  const rangeEnd = 100;
+  const probabilityStart = 0.16; // 16%
+  const probabilityEnd = 1.0; // 100%
 
   const onSonnoChange = (event, value) => {
     setSonno(value);
   };
 
   const onButtonClick = () => {
-    saveSonno(sonno); // Chiamata alla funzione per salvare i dati
+    saveSonno(sonno, calculateProbability(sonno)); // Chiamata alla funzione per salvare i dati
     setShowAlert(true);
+    if (sonno >= 50) {
+      setShowSpleepAlert(true);
+    }
   };
 
-  const saveSonno = (value) => {
+  const calculateProbability = (value) => {
+    if (value <= rangeStart) {
+      return 0; // La probabilità è 0 per valori inferiori al rangeStart
+    } else if (value >= rangeEnd) {
+      return probabilityEnd; // La probabilità è 100% per valori superiori o uguali al rangeEnd
+    } else {
+      const range = rangeEnd - rangeStart;
+      const probabilityRange = probabilityEnd - probabilityStart;
+      const normalizedValue = (value - rangeStart) / range;
+      const interpolatedProbability =
+        probabilityStart + normalizedValue * probabilityRange;
+      return interpolatedProbability;
+    }
+  };
+
+  const saveSonno = (value, prob) => {
     fetch("https://sonnometro-q35n.vercel.app/api/sonno", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ sonno: value }),
+      body: JSON.stringify({ sonno: value, prob: prob }),
     })
       .then((response) => {
         if (response.ok) {
@@ -80,6 +104,12 @@ function App() {
           step={10}
           color="secondary"
         />
+        {showSleepAlert && (
+          <Alert severity="error" onClose={() => setShowSpleepAlert(false)}>
+            Probabilità di prendere sonno al:{" "}
+            {calculateProbability(sonno) * 100} %
+          </Alert>
+        )}
         <Button
           variant="contained"
           color="secondary"
