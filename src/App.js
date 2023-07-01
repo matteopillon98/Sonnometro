@@ -3,7 +3,8 @@ import "./App.css";
 import Slider from "@mui/material/Slider";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
+import Alert from "@mui/material/Alert";
+import BedIcon from "@mui/icons-material/Bed";
 
 if (process.env.NODE_ENV === "development") {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -11,6 +12,7 @@ if (process.env.NODE_ENV === "development") {
 
 function App() {
   const [sonno, setSonno] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
 
   const onSonnoChange = (event, value) => {
     setSonno(value);
@@ -18,6 +20,7 @@ function App() {
 
   const onButtonClick = () => {
     saveSonno(sonno); // Chiamata alla funzione per salvare i dati
+    setShowAlert(true);
   };
 
   const saveSonno = (value) => {
@@ -61,15 +64,13 @@ function App() {
   return (
     <div className="flex justify-center items-center h-screen bg-blue-600 text-white">
       <div className="flex flex-col gap-4 m-6 p-6 justify-items-center">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-around gap-2 ">
           <NightsStayIcon />
           <h1 className="text-center text-xl font-bold">
             Benvenuto/a in Sonnometro
           </h1>
         </div>
-
         <label className="text-center mb-4">Quanto sonno hai?</label>
-
         <Slider
           defaultValue={0}
           value={sonno}
@@ -79,18 +80,24 @@ function App() {
           step={10}
           color="secondary"
         />
-
         <Button
           variant="contained"
           color="secondary"
-          endIcon={<SendIcon />}
+          endIcon={<BedIcon />}
           onClick={onButtonClick}
         >
           Invia
         </Button>
+        {showAlert && (
+          <Alert severity="success" onClose={() => setShowAlert(false)}>
+            Sonno inviato con successo!
+          </Alert>
+        )}
       </div>
     </div>
   );
 }
+
+//          style={{ color: "purple", background: "#D7B9D5" }}
 
 export default App;
