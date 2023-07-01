@@ -27,7 +27,7 @@ function App() {
   };
 
   const onButtonClick = () => {
-    saveSonno(sonno, calculateProbability(sonno)); // Chiamata alla funzione per salvare i dati
+    saveSonno(sonno); // Chiamata alla funzione per salvare i dati
     setShowAlert(true);
     if (sonno >= 50) {
       setShowSpleepAlert(true);
@@ -49,7 +49,7 @@ function App() {
     }
   };
 
-  const saveSonno = (value, probability) => {
+  const saveSonno = (value) => {
     fetch("https://sonnometro-q35n.vercel.app/api/sonno", {
       method: "POST",
       headers: {
