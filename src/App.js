@@ -59,36 +59,36 @@ function App() {
   ];
 
   return (
-    <div className="flex justify-center items-center h-screen flex-col gap-4">
-      <h1 className="text-center text-2xl font-bold">
-        Benvenuto/a in Sonnometro
-      </h1>
-      <label className="text-center">Quanto sonno hai?</label>
+    <div className="flex justify-center items-center h-screen bg-black text-white">
+      <div className="flex flex-col gap-4 m-6 p-6 border-2 border-gray-400 rounded-lg justify-items-center">
+        <div className="flex items-center gap-2">
+          <NightsStayIcon />
+          <h1 className="text-center text-xl font-bold">
+            Benvenuto/a in Sonnometro
+          </h1>
+        </div>
 
-      <div className="w-1/2 flex flex-row gap-4 items-center">
-        <NightsStayIcon className="w-20" />
+        <label className="text-center mb-4">Quanto sonno hai?</label>
+
         <Slider
           defaultValue={0}
           value={sonno}
           aria-label="Default"
-          valueLabelDisplay="auto"
           onChange={onSonnoChange}
-          marks={marks}
+          valueLabelDisplay="on"
           step={10}
           color="secondary"
         />
-      </div>
-      <h2 className="text-center">
-        Hai impostato un livello di sonno pari a {sonno}
-      </h2>
 
-      <Button
-        variant="contained"
-        endIcon={<SendIcon />}
-        onClick={onButtonClick}
-      >
-        Invia
-      </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          endIcon={<SendIcon />}
+          onClick={onButtonClick}
+        >
+          Invia
+        </Button>
+      </div>
     </div>
   );
 }
