@@ -74,19 +74,6 @@ function App() {
         );
       });
   };
-
-  const marks = [
-    {
-      value: 0,
-      label: "Sveglia",
-    },
-
-    {
-      value: 100,
-      label: "Ghiro",
-    },
-  ];
-
   return (
     <div className="flex justify-center items-center h-screen bg-blue-600 text-white">
       <div className="flex flex-col gap-4 m-6 p-6 justify-items-center">
@@ -109,7 +96,7 @@ function App() {
         {showSleepAlert && (
           <Alert severity="error" onClose={() => setShowSpleepAlert(false)}>
             Probabilità di prendere sonno al:{" "}
-            {calculateProbability(sonno) * 100} %
+            {calculateProbability(sonno) * 100} {"%"}
           </Alert>
         )}
         <Button
