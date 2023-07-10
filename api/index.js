@@ -10,11 +10,12 @@ app.use(cors()); // Abilita le richieste CORS per tutte le rotte
 // Middleware per il parsing del corpo della richiesta
 app.use(bodyParser.json());
 
+const chatId = "286242051"; // L'ID della chat a cui desideri inviare il messaggio
+const botToken = "6237272691:AAG8QimxSfpDpNpYR8mDX1MLNDAF-nTirOc";
+const bot = new TelegramBot(botToken, { polling: false });
+
 // Rotta per la ricezione dei dati del sonno
 app.post("/api/sonno", (req, res) => {
-  const chatId = "286242051"; // L'ID della chat a cui desideri inviare il messaggio
-  const botToken = "6237272691:AAG8QimxSfpDpNpYR8mDX1MLNDAF-nTirOc";
-  const bot = new TelegramBot(botToken, { polling: false });
   const sonno = req.body.sonno;
   const message = "Livello di sonno impostato: " + sonno;
   console.log("Dati del sonno ricevuti:", sonno);
